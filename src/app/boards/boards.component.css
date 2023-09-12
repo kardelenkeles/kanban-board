@@ -1,0 +1,12 @@
+.addBoard {
+  background: #bbcfff;
+  width: 350px;
+  border-radius: 30px;
+  padding: 20px;
+  margin: 80px;
+}
+
+.form-control {
+  width: 300px;
+}
+
