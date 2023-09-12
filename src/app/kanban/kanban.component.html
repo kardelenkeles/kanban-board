@@ -1,3 +1,31 @@
+<form
+  class="addTask"
+  (ngSubmit)="addTask()">
+  <div class="form">
+    <label class="form-label">
+      Task Header:
+      <input
+        type="text"
+        name="Header"
+        class="form-control"
+        [(ngModel)]="newHeader"
+      >
+    </label>
+  </div>
+  <div class="form">
+    <label class="form-label">
+      Task Content:
+      <input
+        type="text"
+        name="Content"
+        class="form-control"
+        [(ngModel)]="newContent"
+      >
+    </label>
+  </div>
+  <button type="submit" class="btn btn-dark">Add</button>
+</form>
+
 
 <div class="flex-container">
   <div cdkDropListGroup>
@@ -9,7 +37,10 @@
         cdkDropList
         [cdkDropListData]="backlog"
         (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of backlog" cdkDrag>{{item}}</div>
+        <div class="example-box" *ngFor="let item of backlog" cdkDrag>
+          {{item.header}}
+          {{item.content}}
+        </div>
       </div>
     </div>
 
@@ -21,7 +52,10 @@
         cdkDropList
         [cdkDropListData]="todo"
         (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
+        <div class="example-box" *ngFor="let item of todo" cdkDrag>
+          {{item.header}}
+          {{item.content}}
+        </div>
       </div>
     </div>
 
@@ -33,7 +67,10 @@
         cdkDropList
         [cdkDropListData]="inProgress"
         (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of inProgress" cdkDrag>{{item}}</div>
+        <div class="example-box" *ngFor="let item of inProgress" cdkDrag>
+          {{item.header}}
+          {{item.content}}
+        </div>
       </div>
     </div>
 
@@ -45,7 +82,10 @@
         cdkDropList
         [cdkDropListData]="done"
         (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
+        <div class="example-box" *ngFor="let item of done" cdkDrag>
+          {{item.header}}
+          {{item.content}}
+        </div>
       </div>
     </div>
   </div>

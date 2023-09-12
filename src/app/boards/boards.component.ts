@@ -27,15 +27,13 @@ export class BoardsComponent implements OnInit {
   //     Name: new FormControl(null, [Validators.required]),
   //     Description: new FormControl(null, [Validators.required]),
   // });
-  //
-  // boards: Board[] = [];
-  //
+
   constructor(private store: Store,
               private router: Router) {
   }
 
   //
-  addTask() {
+  addBoard() {
 
     this.store.dispatch(new AddBoard(this.newName, this.newDescription, uuidv4()));
     this.newName = "";
