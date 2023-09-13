@@ -3,9 +3,8 @@ import {Board} from "../../model/board";
 export class AddBoard {
     static readonly type = "[Board] Add board";
 
-    constructor(public name: string,
-                public description: string,
-                public id: string) {
+  constructor(
+              public payload: Board) {
     }
 }
 

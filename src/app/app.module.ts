@@ -10,9 +10,11 @@ import {KanbanComponent} from './kanban/kanban.component';
 import {AppRoutingModule} from './app-routing.module';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgxsModule} from "@ngxs/store";
-import {BoardState} from "./ngxs/state/board.state";
+import {BoardState} from "./state/state/board.state";
 import {CommonModule} from "@angular/common";
-import {TaskState} from "./ngxs/state/task.state";
+import {TaskState} from "./state/state/task.state";
+import {HttpClientModule} from "@angular/common/http";
+import {NgxsLoggerPluginModule} from "@ngxs/logger-plugin";
 
 
 @NgModule({
@@ -33,7 +35,8 @@ import {TaskState} from "./ngxs/state/task.state";
     CommonModule,
     CdkDrag,
     CdkDropListGroup,
-
+    HttpClientModule,
+    NgxsLoggerPluginModule.forRoot()
 
   ],
   providers: [],

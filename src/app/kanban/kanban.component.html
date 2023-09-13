@@ -53,8 +53,10 @@
         [cdkDropListData]="todo"
         (cdkDropListDropped)="drop($event)">
         <div class="example-box" *ngFor="let item of todo" cdkDrag>
-          {{item.header}}
-          {{item.content}}
+          <div class="box">
+            {{item.header}}
+            {{item.content}}
+          </div>
         </div>
       </div>
     </div>

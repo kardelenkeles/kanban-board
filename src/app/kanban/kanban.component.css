@@ -17,9 +17,6 @@ h2 {
   border-radius: 30px;
 }
 
-.card-body {
-
-}
 
 .addTask {
   width: 450px;
@@ -36,7 +33,7 @@ h2 {
   height: 100px;
   border-radius: 30px;
   font-size: 20px;
-
+  align-items: center;
 }
 
 .cdk-drag-preview {

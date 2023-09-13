@@ -4,8 +4,8 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Select, Store} from "@ngxs/store";
 import {Router} from "@angular/router";
-import {AddTask} from "../ngxs/action/task.action";
-import {TaskSelector} from "../ngxs/selector/task.selector";
+import {AddTask} from "../state/action/task.action";
+import {TaskSelector} from "../state/selector/task.selector";
 import {Observable} from "rxjs";
 
 @Component({
