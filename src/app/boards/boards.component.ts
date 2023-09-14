@@ -2,9 +2,8 @@ import {Component, OnInit} from '@angular/core';
 
 import {FormGroup, FormControl, Validators} from "@angular/forms";
 import {Board} from "../model/board";
-import {v4 as uuidv4} from 'uuid';
 import {Select, Store} from "@ngxs/store";
-import {AddBoard} from "../state/action/board.action";
+import {AddBoard, DeleteBoard, GetAllBoards} from "../state/action/board.action";
 import {BoardSelectors} from "../state/selector/board.selector";
 import {Observable} from "rxjs";
 import {Router} from "@angular/router";
@@ -21,8 +20,8 @@ export class BoardsComponent implements OnInit {
   items$: Observable<Board[]>;
 
   newName: string;
-  newDescription: string;
   newId: number;
+  newDescription: string;
   boards: Board[] = [];
   // form: FormGroup = new FormGroup({
   //     Name: new FormControl(null, [Validators.required]),
@@ -34,11 +33,9 @@ export class BoardsComponent implements OnInit {
               private boardService: BoardService) {
   }
 
-  findBoardById(id:string) {
-    return this.boardService.getBoard(id);
-  }
-
-
+  // findBoardById(id: string) {
+  //   return this.boardService.getBoard(id);
+  // }
 
   //
   addBoard() {
@@ -46,7 +43,7 @@ export class BoardsComponent implements OnInit {
     this.store.dispatch(new AddBoard({
       name: this.newName,
       description: this.newDescription,
-      id: uuidv4()
+      id: this.newId
     }));
 
     // console.log(this.form.value);
@@ -62,12 +59,21 @@ export class BoardsComponent implements OnInit {
     // console.log(this.boards);
   }
 
-  ngOnInit(): void {
-    this.items$
-      .subscribe(data => this.boards = data)
+  deleteBoard(id: number) {
+    if (confirm('Do you want to delete this board?')) {
+      console.log(id);
+      this.store.dispatch(new DeleteBoard(id));
+    }
   }
 
-  navigateKanban(id: string) {
+  ngOnInit(): void {
+    this.items$
+      .subscribe(data => this.boards = data);
+
+    this.store.dispatch(new GetAllBoards());
+  }
+
+  navigateKanban(id: number) {
     this.router
       .navigate([
         '/boards',

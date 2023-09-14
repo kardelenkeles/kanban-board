@@ -15,9 +15,16 @@ export class BoardService {
   getBoard(id: string){
     return this.http.get<Board[]>(`http://localhost:4200/api/boards/${id}`);
   }
+  getAllBoards(){
+    return this.http.get<Board[]>(`http://localhost:4200/api/boards`);
+  }
 
   addBoard(payload: Board){
     return this.http.post<Board>(`http://localhost:4200/api/boards`, payload);
+  }
+
+  deleteBoard(id:number){
+    return this.http.delete<Board>(`http://localhost:4200/api/boards/${id}`);
   }
 
   // retrieveAllTodos(username: string) {

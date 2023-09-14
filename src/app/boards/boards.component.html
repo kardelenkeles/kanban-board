@@ -31,12 +31,14 @@
       <th>Description</th>
     </tr>
     </thead>
-    <tbody>
-    <tr *ngFor="let board of boards; let i = index" (click)="navigateKanban(board.id)">
-      <th>{{i + 1}}</th>
+    <thead>
+    <tr *ngFor="let board of boards; ">
+<!--      <th>{{i + 1}}</th>-->
       <td>{{board.name}}</td>
       <td>{{board.description}}</td>
+      <button (click)="navigateKanban(board.id)" class="btn btn-secondary m-2">Go Board</button>
+      <button (click)="deleteBoard(board.id)" class="btn btn-danger m-2">Delete</button>
     </tr>
-    </tbody>
+    </thead>
   </table>
 </div>
