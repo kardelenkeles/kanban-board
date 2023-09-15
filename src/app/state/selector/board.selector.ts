@@ -5,8 +5,7 @@ import {BoardStateModel} from "../../model/boardStateModel";
 export class BoardSelectors {
     @Selector([BoardState])
     static items(state: BoardStateModel) {
-        return state.items;
+      return state.items;
     }
-
 
 }

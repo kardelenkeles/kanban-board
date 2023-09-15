@@ -1,0 +1,25 @@
+<div class="container" >
+  <form class="addBoard" (ngSubmit)="updateBoard()">
+    <div class="mb-3">
+      <label class="form-label">
+        Board Name:
+        <input
+                type="text"
+                name="Name"
+                class="form-control"
+                [(ngModel)]="newName"
+        >
+      </label>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Board Description:</label>
+      <input
+              type="text"
+              name="Description"
+              class="form-control"
+              [(ngModel)]="newDescription"
+      >
+    </div>
+    <button type="submit" class="btn btn-dark">Save</button>
+  </form>
+</div>

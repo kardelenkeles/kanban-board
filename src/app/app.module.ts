@@ -15,13 +15,21 @@ import {CommonModule} from "@angular/common";
 import {TaskState} from "./state/state/task.state";
 import {HttpClientModule} from "@angular/common/http";
 import {NgxsLoggerPluginModule} from "@ngxs/logger-plugin";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatButtonModule} from "@angular/material/button";
+import { DialogComponent } from './boards/dialog/dialog.component';
+import {MatInputModule} from "@angular/material/input";
+import {MatIconModule} from "@angular/material/icon";
+import {BoardService} from "./service/board.service";
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 @NgModule({
   declarations: [
     AppComponent,
     BoardsComponent,
-    KanbanComponent
+    KanbanComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +44,12 @@ import {NgxsLoggerPluginModule} from "@ngxs/logger-plugin";
     CdkDrag,
     CdkDropListGroup,
     HttpClientModule,
-    NgxsLoggerPluginModule.forRoot()
+    NgxsLoggerPluginModule.forRoot(),
+    MatButtonToggleModule,
+    MatButtonModule,
+    MatInputModule,
+    MatIconModule,
+    MatDialogModule
 
   ],
   providers: [],

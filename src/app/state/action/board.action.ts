@@ -19,6 +19,14 @@ export class DeleteBoard {
   }
 }
 
+export class UpdateBoard {
+  static readonly type = "[Board] Update Board";
+  constructor(public id: number,
+              public name: string,
+              public description: string) {
+  }
+}
+
 export class ChangeStatus {
   static readonly type = "[Board] Change status";
 
