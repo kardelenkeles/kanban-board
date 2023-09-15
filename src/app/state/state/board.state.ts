@@ -68,22 +68,8 @@ export class BoardState {
     }
 
     @Action(UpdateBoard)
-    // updateBoard(ctx: StateContext<BoardStateModel>, action: UpdateBoard) {
-    //   const state = ctx.getState();
-    //   const updatedBoards = state.items.map((board) => {
-    //     // board.id === id ? {...board}: board
-    //     if (board.id === action.board.id) {
-    //       return action.board;
-    //     }
-    //     return board;
-    //   });
-    //   ctx.setState({...state, items: updatedBoards});
-    // }
-
-    updateBoard({getState, setState}: StateContext<BoardStateModel>, action: UpdateBoard) {
-        console.log(action.id)
+    updateBoard({}: StateContext<BoardStateModel>, action: UpdateBoard) {
         const formBody = {name: action.name, description: action.description}
-        return this.boardService.updateBoard(action.id, formBody)
-
+        return this.boardService.updateBoard(action.id, formBody);
     }
 }

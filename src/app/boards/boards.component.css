@@ -10,7 +10,7 @@
   width: 300px;
 }
 
-.table{
-  width: 1200px;
-  font-size: 25px;
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
 }

@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
 
 import {FormGroup, FormControl, Validators} from "@angular/forms";
 import {Board} from "../model/board";
@@ -8,9 +8,8 @@ import {BoardSelectors} from "../state/selector/board.selector";
 import {Observable} from "rxjs";
 import {Router} from "@angular/router";
 import {BoardService} from "../service/board.service";
-import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import {DialogComponent} from "./dialog/dialog.component";
-import {BoardState} from "../state/state/board.state";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
     selector: 'app-boards',
@@ -22,9 +21,12 @@ export class BoardsComponent implements OnInit {
     items$: Observable<Board[]>;
 
     newName: string;
-    newId: number;
     newDescription: string;
+    newId: number;
+    newContentName: string;
+    newContentDescription: string;
     boards: Board[] = [];
+
     // form: FormGroup = new FormGroup({
     //     Name: new FormControl(null, [Validators.required]),
     //     Description: new FormControl(null, [Validators.required]),
@@ -32,16 +34,10 @@ export class BoardsComponent implements OnInit {
 
     constructor(private store: Store,
                 private router: Router,
-                private boardService: BoardService,
-                private dialog: MatDialog,
+                private dialog: MatDialog
     ) {
     }
 
-    // findBoardById(id: string) {
-    //   return this.boardService.getBoard(id);
-    // }
-
-    //
     addBoard() {
 
         this.store.dispatch(new AddBoard({
@@ -52,23 +48,17 @@ export class BoardsComponent implements OnInit {
         }));
         this.newName = '';
         this.newDescription = '';
-        // console.log(this.form.value);
-        // this.boards.push({
-        //     id: uuidv4(),
-        //     name: this.form.value.Name,
-        //     description: this.form.value.Description
-        // })
-        // // this.boards = [...this.boards,{
-        // //         name: this.form.value.Name,
-        // //         description: this.form.value.Description
-        // //     } ];
-        // console.log(this.boards);
     }
 
     deleteBoard(id: number) {
         if (confirm('Do you want to delete this board?')) {
             this.store.dispatch(new DeleteBoard(id));
         }
+    }
+
+    updateValues(event: any) {
+        this.newContentName = event.target.value;
+        this.newContentDescription = event.target.value;
     }
 
 
@@ -88,7 +78,6 @@ export class BoardsComponent implements OnInit {
             ]).then();
     }
 
-
     public openDialog(board: any) {
         let dialogRef = this.dialog.open(DialogComponent, {
             width: "1000px",
@@ -97,5 +86,6 @@ export class BoardsComponent implements OnInit {
             }
         });
     }
+
 }
 

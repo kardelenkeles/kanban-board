@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {BoardsComponent} from "../boards/boards.component";
-import {Board} from "../model/board";
+import {Board, UpdateBoard} from "../model/board";
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +27,7 @@ export class BoardService {
     return this.http.delete<Board>(`http://localhost:4200/api/boards/${id}`);
   }
 
-  updateBoard(id:number, formBody: any){
+  updateBoard(id:number, formBody:UpdateBoard){
     return this.http.put(`http://localhost:4200/api/boards/${id}`, formBody);
   }
 

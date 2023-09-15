@@ -1,47 +1,69 @@
 <form class="addBoard" (ngSubmit)="addBoard()">
-  <div class="mb-3">
-    <label class="form-label">
-      Board Name:
-      <input
-        type="text"
-        name="Name"
-        class="form-control"
-        [(ngModel)]="newName"
-      >
-    </label>
-  </div>
-  <div class="mb-3">
-    <label class="form-label">Board Description:</label>
-    <input
-      type="text"
-      name="Description"
-      class="form-control"
-      [(ngModel)]="newDescription"
-    >
-  </div>
-  <button type="submit" class="btn btn-dark">Add</button>
+    <div class="mb-3">
+        <label class="form-label">
+            Board Name:
+            <input
+                    type="text"
+                    name="Name"
+                    class="form-control"
+                    [(ngModel)]="newName"
+            >
+        </label>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Board Description:</label>
+        <input
+                type="text"
+                name="Description"
+                class="form-control"
+                [(ngModel)]="newDescription"
+        >
+    </div>
+    <button type="submit" class="btn btn-dark">Add</button>
 </form>
 
 <div class="container">
-  <table class="table table-borderless">
-    <thead>
-    <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Description</th>
-    </tr>
-    </thead>
-    <thead>
-    <tr *ngFor="let board of boards; let i = index">
-      <th>{{i + 1}}</th>
-      <td>{{board.name}}</td>
-      <td>{{board.description}}</td>
-      <mat-button-toggle (click)="navigateKanban(board.id)" class="btn btn-secondary m-2">Go Board</mat-button-toggle>
+    <div class="wrapper">
+        <div class="grid-items">Id</div>
+        <div class="grid-items">Name</div>
+        <div class="grid-items">Description</div>
+    </div>
+    <form>
+        <div class="wrapper" *ngFor="let board of boards; let i = index">
+            <div class="grid-items">{{i + 1}} </div>
+            <div class="grid-items"
+                 contenteditable="true"
+                 id="newContentName"
+            ><input
+                    type="hidden"
+                    name="contentName"
+                    [(ngModel)]="board.name"
+                    (input)="updateValues($event)"
+                    [value]="newContentName"
+            />{{board.name}}</div>
 
-      <mat-button-toggle (click)="openDialog(board)" class="update btn btn-info m-2">Update</mat-button-toggle>
+            <div class="grid-items"
+                 contenteditable="true"
+                 id="newContentDescription"
+            ><input type="hidden"
+                    name="contentDescription"
+                    [(ngModel)]="board.description"
+                    (input)="updateValues($event)"
+                    [value]="newContentDescription"
+            />{{board.description}}</div>
 
-      <mat-button-toggle (click)="deleteBoard(board.id)" class="btn btn-danger m-2">Delete</mat-button-toggle>
-    </tr>
-    </thead>
-  </table>
+            <div class="grid-items">
+                <button (click)="navigateKanban(board.id)" class="btn btn-secondary m-2">Go Board
+                </button>
+            </div>
+            <div class="grid-items">
+                <button (click)="openDialog(board)" class="update btn btn-info m-2">Update</button>
+            </div>
+
+            <div class="grid-items">
+                <button (click)="deleteBoard(board.id)" class="btn btn-danger m-2">Delete</button>
+            </div>
+        </div>
+    </form>
+
 </div>

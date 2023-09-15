@@ -17,11 +17,10 @@ import {HttpClientModule} from "@angular/common/http";
 import {NgxsLoggerPluginModule} from "@ngxs/logger-plugin";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatButtonModule} from "@angular/material/button";
-import { DialogComponent } from './boards/dialog/dialog.component';
 import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
-import {BoardService} from "./service/board.service";
 import {MatDialogModule} from "@angular/material/dialog";
+import { DialogComponent } from './boards/dialog/dialog.component';
 
 
 @NgModule({
@@ -29,7 +28,8 @@ import {MatDialogModule} from "@angular/material/dialog";
     AppComponent,
     BoardsComponent,
     KanbanComponent,
-    DialogComponent
+    DialogComponent,
+
   ],
   imports: [
     BrowserModule,
