@@ -18,8 +18,8 @@ export class DialogComponent implements OnInit {
                 @Inject(MAT_DIALOG_DATA) public data: any) {
     }
 
-    updateBoard(board: Board) {
-        this.store.dispatch(new UpdateBoard(board.id, board.name, board.description));
+    updateBoard() {
+        this.store.dispatch(new UpdateBoard(this.data.board.id, this.newName, this.newDescription));
     }
 
     ngOnInit(): void {
