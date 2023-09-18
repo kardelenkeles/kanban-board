@@ -42,14 +42,14 @@
           <div class="editable-content"
                [contentEditable]="item.id === editedItemId"
                (click)="startEditing(item.id)"
-               (blur)="updateTask()"
+               (blur)="updateTask(item.id, 'header', $event)"
                [innerHTML]="item.header"
           >
           </div>
           <div class="editable-content"
                [contentEditable]="item.id === editedItemId"
                (click)="startEditing(item.id)"
-               (blur)="updateTask()"
+               (blur)="updateTask(item.id, 'content', $event)"
                [innerHTML]="item.content"
           >
           </div>

@@ -41,6 +41,8 @@ export class KanbanComponent implements OnInit {
     this.items$
       .subscribe(data => this.backlog = data)
 
+
+
   }
 
   startEditing(id: number){
@@ -60,13 +62,19 @@ export class KanbanComponent implements OnInit {
 
   }
 
-  updateTask(){
-    this.store.dispatch(new UpdateTask(this.editedItemId, this.newHeader, this.newContent, this.newLabel));
-    this.newHeader = "";
-    this.newContent = "";
-    this.newLabel = "";
-  }
+  updateTask(taskId: number, property:string, event:Event) {
 
+    const task:any = this.backlog.find(item => item.id === taskId);
+
+    if (task) {
+      task[property] = (event.target as HTMLElement).innerText;
+
+      this.store.dispatch(new UpdateTask(taskId, task.header, task.content, task.label));
+      // this.newHeader = "";
+      // this.newContent = "";
+      // this.newLabel = "";
+    }
+  }
   deleteTask(id: number) {
     if (confirm('Do you want to delete this task?')) {
       this.store.dispatch(new DeleteTask(id));
