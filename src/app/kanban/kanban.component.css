@@ -11,7 +11,7 @@ h2 {
   display: flex;
   float: left;
   width: 400px;
-  height: 300px;
+  height: 600px;
   overflow: auto;
   margin: 25px;
   border-radius: 30px;
@@ -29,27 +29,49 @@ h2 {
 .example-box {
   display: flex;
   background: #a3b5ff;
-  width: 300px;
+  width: 380px;
   height: 200px;
   border-radius: 30px;
   font-size: 20px;
   align-items: center;
-}
-
-.form-select{
-  width: 190px;
-}
-
-button{
   margin: 10px;
 }
 
-.header{
-  margin: 40px;
+.form-select {
+  width: 190px;
 }
 
-.content{
-  margin: 40px;
+button {
+  margin: 10px;
+}
+
+.delete-button:hover{
+  background-color: #d32f2f;
+}
+
+.delete-button {
+  position: absolute;
+
+  right: 5px;
+  width: 20px;
+  height: 20px;
+  background-color: #f44336;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  line-height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+
+.card-body {
+
+}
+
+.editable-content {
+  display: flex;
+  float: left;
 }
 
 .cdk-drag-preview {

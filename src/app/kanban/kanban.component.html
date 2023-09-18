@@ -31,20 +31,20 @@
   <div cdkDropListGroup>
     <div class="card">
       <h2>Backlog</h2>
-
       <div
         class="card-body"
         cdkDropList
         [cdkDropListData]="backlog"
         (cdkDropListDropped)="drop($event)">
+
         <div class="example-box" *ngFor="let item of backlog" cdkDrag>
+          <button class="delete-button" (click)="deleteTask(item.id)">x</button>
           <div class="editable-content"
                [contentEditable]="item.id === editedItemId"
                (click)="startEditing(item.id)"
                (blur)="updateTask()"
                [innerHTML]="item.header"
           >
-            <div class="header"></div>
           </div>
           <div class="editable-content"
                [contentEditable]="item.id === editedItemId"
@@ -52,11 +52,8 @@
                (blur)="updateTask()"
                [innerHTML]="item.content"
           >
-            <div class="content"></div>
           </div>
         </div>
-
-
       </div>
     </div>
 

@@ -4,10 +4,12 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Select, Store} from "@ngxs/store";
 import {Router} from "@angular/router";
-import {AddTask, GetAllTasks, UpdateTask} from "../state/action/task.action";
+import {AddTask, DeleteTask, GetAllTasks, UpdateTask} from "../state/action/task.action";
 import {TaskSelector} from "../state/selector/task.selector";
 import {Observable} from "rxjs";
 import {TaskService} from "../service/task.service";
+import {animate} from "@angular/animations";
+import {DeleteBoard} from "../state/action/board.action";
 
 @Component({
   selector: 'app-kanban',
@@ -17,7 +19,7 @@ import {TaskService} from "../service/task.service";
 export class KanbanComponent implements OnInit {
   @Select(TaskSelector.items)
   items$: Observable<Task[]>;
-  editedItemId: number | null = null;
+  editedItemId: number;
 
   backlog: Task  [] = [];
   todo: Task  [] = [];
@@ -38,6 +40,7 @@ export class KanbanComponent implements OnInit {
 
     this.items$
       .subscribe(data => this.backlog = data)
+
   }
 
   startEditing(id: number){
@@ -58,10 +61,17 @@ export class KanbanComponent implements OnInit {
   }
 
   updateTask(){
-    this.editedItemId = null;
-    this.store.dispatch(new UpdateTask(this.newId, this.newHeader, this.newContent, this.newLabel))
+    this.store.dispatch(new UpdateTask(this.editedItemId, this.newHeader, this.newContent, this.newLabel));
+    this.newHeader = "";
+    this.newContent = "";
+    this.newLabel = "";
   }
 
+  deleteTask(id: number) {
+    if (confirm('Do you want to delete this task?')) {
+      this.store.dispatch(new DeleteTask(id));
+    }
+  }
 
   drop(event: CdkDragDrop<Task[]>) {
     if (event.previousContainer === event.container) {
