@@ -29,77 +29,22 @@
 
 <div class="flex-container">
   <div cdkDropListGroup>
-    <div class="card">
-      <h2>Backlog</h2>
+    <div *ngFor="let column of columns" class="card">
+      <h2>{{column}}</h2>
+
       <div
         class="card-body"
         cdkDropList
-        [cdkDropListData]="backlog"
-        (cdkDropListDropped)="drop($event)">
-
-        <div class="example-box" *ngFor="let item of backlog" cdkDrag>
+        [cdkDropListData]="allTasks[column]"
+        (cdkDropListDropped)="drop($event, column)">
+        <div class="example-box" *ngFor="let item of allTasks[column]" cdkDrag>
           <button class="delete-button" (click)="deleteTask(item.id)">x</button>
-          <div class="editable-content"
-               [contentEditable]="item.id === editedItemId"
-               (click)="startEditing(item.id)"
-               (blur)="updateTask(item.id, 'header', $event)"
-               [innerHTML]="item.header"
-          >
+          <div class="editable-content">
+              {{item.header}}
           </div>
-          <div class="editable-content"
-               [contentEditable]="item.id === editedItemId"
-               (click)="startEditing(item.id)"
-               (blur)="updateTask(item.id, 'content', $event)"
-               [innerHTML]="item.content"
-          >
+          <div class="editable-content">
+              {{item.content}}
           </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h2>To do</h2>
-
-      <div
-        class="card-body"
-        cdkDropList
-        [cdkDropListData]="todo"
-        (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of todo" cdkDrag>
-          <div class="box">
-            {{item.header}}
-            {{item.content}}
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h2>In progress</h2>
-
-      <div
-        class="card-body"
-        cdkDropList
-        [cdkDropListData]="inProgress"
-        (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of inProgress" cdkDrag>
-          {{item.header}}
-          {{item.content}}
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h2>Done</h2>
-
-      <div
-        class="card-body"
-        cdkDropList
-        [cdkDropListData]="done"
-        (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of done" cdkDrag>
-          {{item.header}}
-          {{item.content}}
         </div>
       </div>
     </div>

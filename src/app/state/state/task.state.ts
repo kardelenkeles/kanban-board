@@ -1,13 +1,9 @@
 import {TaskStateModel} from "../../model/taskStateModel";
 import {Injectable} from "@angular/core";
 import {Action, State, StateContext} from "@ngxs/store";
-import {Board} from "../../model/board";
 import {AddTask, DeleteTask, GetAllTasks, UpdateTask} from "../action/task.action";
 import {Task} from "../../model/task";
-import {BoardStateModel} from "../../model/boardStateModel";
-import {AddBoard, DeleteBoard, GetAllBoards, UpdateBoard} from "../action/board.action";
 import {tap} from "rxjs";
-import {BoardService} from "../../service/board.service";
 import {TaskService} from "../../service/task.service";
 
 @State<TaskStateModel>({
@@ -37,7 +33,9 @@ export class TaskState {
   getAllTasks({getState, patchState}: StateContext<TaskStateModel>) {
     return this.taskService.getAllTasks()
       .pipe(tap((result: any) => {
-        const state = getState();
+
+        console.log('all task', result);
+        // const state = getState();
         patchState({
           duties: result
         });
@@ -59,8 +57,7 @@ export class TaskState {
 
   @Action(UpdateTask)
   updateTask({}: StateContext<TaskStateModel>, action: UpdateTask) {
-    const formBody = {header: action.header, content: action.content, label: action.label}
-    return this.taskService.updateTask(action.id, formBody);
+    return this.taskService.updateTask(action.id, action.payload);
   }
 
 

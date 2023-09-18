@@ -27,7 +27,7 @@ export class TaskService {
     return this.http.delete<Task>(`http://localhost:4200/api/tasks/${id}`);
   }
 
-  updateTask(id:number, formBody:UpdateTask){
+  updateTask(id:number, formBody:UpdateTask | {status: string}){
     return this.http.put(`http://localhost:4200/api/tasks/${id}`, formBody);
   }
 

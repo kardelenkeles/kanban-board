@@ -5,7 +5,7 @@ export class AddTask {
   static readonly type = "[Task] Add task";
 
   constructor(
-              public payload: Task
+    public payload: Task
   ) {
   }
 }
@@ -25,10 +25,12 @@ export class UpdateTask {
   static readonly type = "[Board] Update Task";
 
   constructor(public id: number,
-              public header: string,
-              public content: string,
-              public label: string
-  ) {
+              public payload: {
+                header: string,
+                content: string,
+                label: string,
+                status: string
+              }) {
   }
 }
 
