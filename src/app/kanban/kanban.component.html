@@ -38,9 +38,30 @@
         [cdkDropListData]="backlog"
         (cdkDropListDropped)="drop($event)">
         <div class="example-box" *ngFor="let item of backlog" cdkDrag>
-          {{item.header}}
-          {{item.content}}
+          <div class="editable-content"
+               (click)="startEditing()"
+               *ngIf="!isEditing"
+               [contentEditable]="isEditing"
+          >
+            <div class="header">{{item.header}}</div>
+          </div>
+          <input
+                *ngIf="isEditing && newLabel === editedTask"
+                [(ngModel)]="newLabel"
+                (blur)="addTask()"
+                (keyup.enter)="addTask()"
+          />
+
+          <div class="editable-content"
+               (blur)="addTask()"
+               [contentEditable]="isEditing"
+               [(ngModel)]="newLabel"
+          >
+            <div class="content">{{item.content}}</div>
+          </div>
         </div>
+
+
       </div>
     </div>
 

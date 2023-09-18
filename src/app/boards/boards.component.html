@@ -32,24 +32,18 @@
         <div class="wrapper" *ngFor="let board of boards; let i = index">
             <div class="grid-items">{{i + 1}} </div>
             <div class="grid-items"
-                 contenteditable="true"
                  id="newContentName"
             ><input
                     type="hidden"
                     name="contentName"
                     [(ngModel)]="board.name"
-                    (input)="updateValues($event)"
-                    [value]="newContentName"
             />{{board.name}}</div>
 
             <div class="grid-items"
-                 contenteditable="true"
                  id="newContentDescription"
             ><input type="hidden"
                     name="contentDescription"
                     [(ngModel)]="board.description"
-                    (input)="updateValues($event)"
-                    [value]="newContentDescription"
             />{{board.description}}</div>
 
             <div class="grid-items">

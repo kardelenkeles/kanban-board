@@ -30,10 +30,26 @@ h2 {
   display: flex;
   background: #a3b5ff;
   width: 300px;
-  height: 100px;
+  height: 200px;
   border-radius: 30px;
   font-size: 20px;
   align-items: center;
+}
+
+.form-select{
+  width: 190px;
+}
+
+button{
+  margin: 10px;
+}
+
+.header{
+  margin: 40px;
+}
+
+.content{
+  margin: 40px;
 }
 
 .cdk-drag-preview {

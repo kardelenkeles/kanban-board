@@ -23,8 +23,6 @@ export class BoardsComponent implements OnInit {
     newName: string;
     newDescription: string;
     newId: number;
-    newContentName: string;
-    newContentDescription: string;
     boards: Board[] = [];
 
     // form: FormGroup = new FormGroup({
@@ -56,10 +54,10 @@ export class BoardsComponent implements OnInit {
         }
     }
 
-    updateValues(event: any) {
-        this.newContentName = event.target.value;
-        this.newContentDescription = event.target.value;
-    }
+    // updateValues(event: any) {
+    //     this.newContentName = event.target.value;
+    //     this.newContentDescription = event.target.value;
+    // }
 
 
     ngOnInit(): void {
@@ -67,6 +65,7 @@ export class BoardsComponent implements OnInit {
         this.store.dispatch(new GetAllBoards());
         this.items$
             .subscribe(data => this.boards = data);
+
 
     }
 
@@ -79,7 +78,7 @@ export class BoardsComponent implements OnInit {
     }
 
     public openDialog(board: any) {
-        let dialogRef = this.dialog.open(DialogComponent, {
+        const dialogRef = this.dialog.open(DialogComponent, {
             width: "1000px",
             data: {
                 board

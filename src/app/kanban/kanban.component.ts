@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Task} from "../model/task";
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
@@ -13,32 +13,44 @@ import {Observable} from "rxjs";
   templateUrl: './kanban.component.html',
   styleUrls: ['./kanban.component.css']
 })
-export class KanbanComponent implements OnInit{
+export class KanbanComponent implements OnInit {
   @Select(TaskSelector.items)
   items$: Observable<Task[]>;
+
+  isEditing = false;
+  editedTask: string | null = null;
 
   backlog: Task  [] = [];
   todo: Task  [] = [];
   inProgress: Task  [] = [];
   done: Task  [] = [];
 
-  newHeader:string;
-  newContent:string;
-
-  constructor(private store: Store,
-              private router: Router) {
+  newHeader: string;
+  newContent: string;
+  newLabel: string;
+  constructor(private store: Store) {
   }
 
   ngOnInit(): void {
-        this.items$
-          .subscribe(data => this.backlog = data)
-    }
+
+    this.items$
+      .subscribe(data => this.backlog = data)
+  }
 
 
   addTask() {
+    this.isEditing = false;
     this.store.dispatch(new AddTask(this.newHeader, this.newContent));
     this.newHeader = "";
     this.newContent = "";
+    this.editedTask = null;
+  }
+
+  startEditing(){
+    if (!this.isEditing) {
+      this.isEditing = true;
+      this.editedTask = this.newLabel; // Store the current content
+    }
   }
 
 

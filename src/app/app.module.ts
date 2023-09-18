@@ -21,6 +21,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
 import {MatDialogModule} from "@angular/material/dialog";
 import { DialogComponent } from './boards/dialog/dialog.component';
+import { TasksComponent } from './kanban/tasks/tasks.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { DialogComponent } from './boards/dialog/dialog.component';
     BoardsComponent,
     KanbanComponent,
     DialogComponent,
+    TasksComponent,
 
   ],
   imports: [

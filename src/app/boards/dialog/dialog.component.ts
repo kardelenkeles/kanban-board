@@ -1,5 +1,4 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {Board} from "../../model/board";
 import {UpdateBoard} from "../../state/action/board.action";
 import {Store} from "@ngxs/store";
 import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
