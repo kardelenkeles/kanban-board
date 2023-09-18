@@ -4,9 +4,10 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Select, Store} from "@ngxs/store";
 import {Router} from "@angular/router";
-import {AddTask} from "../state/action/task.action";
+import {AddTask, GetAllTasks, UpdateTask} from "../state/action/task.action";
 import {TaskSelector} from "../state/selector/task.selector";
 import {Observable} from "rxjs";
+import {TaskService} from "../service/task.service";
 
 @Component({
   selector: 'app-kanban',
@@ -16,41 +17,49 @@ import {Observable} from "rxjs";
 export class KanbanComponent implements OnInit {
   @Select(TaskSelector.items)
   items$: Observable<Task[]>;
-
-  isEditing = false;
-  editedTask: string | null = null;
+  editedItemId: number | null = null;
 
   backlog: Task  [] = [];
   todo: Task  [] = [];
   inProgress: Task  [] = [];
   done: Task  [] = [];
 
+
+  newId: number;
   newHeader: string;
   newContent: string;
   newLabel: string;
+
   constructor(private store: Store) {
   }
 
   ngOnInit(): void {
+    this.store.dispatch(GetAllTasks)
 
     this.items$
       .subscribe(data => this.backlog = data)
   }
 
-
-  addTask() {
-    this.isEditing = false;
-    this.store.dispatch(new AddTask(this.newHeader, this.newContent));
-    this.newHeader = "";
-    this.newContent = "";
-    this.editedTask = null;
+  startEditing(id: number){
+    this.editedItemId = id;
   }
 
-  startEditing(){
-    if (!this.isEditing) {
-      this.isEditing = true;
-      this.editedTask = this.newLabel; // Store the current content
-    }
+  addTask() {
+    this.store.dispatch(new AddTask({
+      header: this.newHeader,
+      content: this.newContent,
+      id: this.newId,
+      label: this.newLabel
+    }));
+    this.newHeader = "";
+    this.newContent = "";
+    this.newLabel = "";
+
+  }
+
+  updateTask(){
+    this.editedItemId = null;
+    this.store.dispatch(new UpdateTask(this.newId, this.newHeader, this.newContent, this.newLabel))
   }
 
 
