@@ -30,12 +30,9 @@ export class TaskState {
   }
 
   @Action(GetAllTasks)
-  getAllTasks({getState, patchState}: StateContext<TaskStateModel>) {
+  getAllTasks({patchState}: StateContext<TaskStateModel>) {
     return this.taskService.getAllTasks()
       .pipe(tap((result: any) => {
-
-        console.log('all task', result);
-        // const state = getState();
         patchState({
           duties: result
         });

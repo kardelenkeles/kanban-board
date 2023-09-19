@@ -11,18 +11,18 @@ export class AddTask {
 }
 
 export class GetAllTasks {
-  static readonly type = "[Board] Get All Tasks";
+  static readonly type = "[Task] Get All Tasks";
 }
 
 export class DeleteTask {
-  static readonly type = "[Board] Delete Task";
+  static readonly type = "[Task] Delete Task";
 
   constructor(public id: number) {
   }
 }
 
 export class UpdateTask {
-  static readonly type = "[Board] Update Task";
+  static readonly type = "[Task] Update Task";
 
   constructor(public id: number,
               public payload: {

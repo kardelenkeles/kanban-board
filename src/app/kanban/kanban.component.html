@@ -39,15 +39,20 @@
         (cdkDropListDropped)="drop($event, column)">
         <div class="example-box" *ngFor="let item of allTasks[column]" cdkDrag>
           <button class="delete-button" (click)="deleteTask(item.id)">x</button>
-          <div class="editable-content">
-              {{item.header}}
+          <i></i>
+          <div
+            *ngIf="!isEdited"
+          >
+            {{item.header}}
           </div>
+          <input
+            *ngIf="isEdited"
+          />
           <div class="editable-content">
-              {{item.content}}
+            {{item.content}}
           </div>
         </div>
       </div>
     </div>
   </div>
-
 </div>

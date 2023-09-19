@@ -6,6 +6,7 @@ import {AddTask, DeleteTask, GetAllTasks, UpdateTask} from "../state/action/task
 import {TaskSelector} from "../state/selector/task.selector";
 import {Observable} from "rxjs";
 import {TaskService} from "../service/task.service";
+import {TaskState} from "../state/state/task.state";
 
 @Component({
   selector: 'app-kanban',
@@ -15,23 +16,20 @@ import {TaskService} from "../service/task.service";
 export class KanbanComponent implements OnInit {
   @Select(TaskSelector.items)
   allTasks$: Observable<Task[]>;
-
-  editedItemId: number;
-
+  isEdited: boolean = false;
 
   allTasks: any = {
     backlog: [],
     todo: [],
     inProgress: [],
-    done: [],
+    done: []
   }
-
-  taskStatus = TaskStatus;
 
   newId: number;
   newHeader: string;
   newContent: string;
   newLabel: string;
+
   columns = [
     'backlog',
     'todo',
@@ -47,15 +45,22 @@ export class KanbanComponent implements OnInit {
 
     this.allTasks$
       .subscribe(data => {
+        this.allTasks= {
+          backlog: [],
+          todo: [],
+          inProgress: [],
+          done: []
+        }
         data.forEach(item => {
-          return this.allTasks[item.status || 'todo'].push(item);
+          if (!this.allTasks[item.status]) {
+            this.allTasks[item.status] = [];
+          }
+          return this.allTasks[item.status].push(item);
         });
+        this.columns = Object.keys(this.allTasks);
       });
   }
 
-  startEditing(id: number) {
-    this.editedItemId = id;
-  }
 
   addTask() {
     this.store.dispatch(new AddTask({
@@ -63,12 +68,11 @@ export class KanbanComponent implements OnInit {
       content: this.newContent,
       id: this.newId,
       label: this.newLabel,
-      status: 'todo'
+      status: 'backlog'
     }));
     this.newHeader = "";
     this.newContent = "";
     this.newLabel = "";
-
   }
 
   updateTask(id: number, item: any) {
@@ -82,9 +86,6 @@ export class KanbanComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<Task[]>, taskStatus: string) {
-    console.log(';::::droi', event);
-    console.log(';::::droi', event.previousContainer.data[event.previousIndex]);
-
     const item = event.previousContainer.data[event.previousIndex];
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -95,8 +96,8 @@ export class KanbanComponent implements OnInit {
         event.previousIndex,
         event.currentIndex,
       );
-      this.updateTask(item.id,{
-        status : taskStatus
+      this.updateTask(item.id, {
+        status: taskStatus
       })
     }
   }

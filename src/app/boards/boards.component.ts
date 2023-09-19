@@ -25,10 +25,6 @@ export class BoardsComponent implements OnInit {
     newId: number;
     boards: Board[] = [];
 
-    // form: FormGroup = new FormGroup({
-    //     Name: new FormControl(null, [Validators.required]),
-    //     Description: new FormControl(null, [Validators.required]),
-    // });
 
     constructor(private store: Store,
                 private router: Router,
@@ -53,12 +49,6 @@ export class BoardsComponent implements OnInit {
             this.store.dispatch(new DeleteBoard(id));
         }
     }
-
-    // updateValues(event: any) {
-    //     this.newContentName = event.target.value;
-    //     this.newContentDescription = event.target.value;
-    // }
-
 
     ngOnInit(): void {
 
