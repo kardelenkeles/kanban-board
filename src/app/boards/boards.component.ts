@@ -56,7 +56,6 @@ export class BoardsComponent implements OnInit {
         this.items$
             .subscribe(data => this.boards = data);
 
-
     }
 
     navigateKanban(id: number) {

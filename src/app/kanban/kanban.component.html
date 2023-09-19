@@ -39,6 +39,25 @@
             [cdkDropListData]="allTasks[column]"
             (cdkDropListDropped)="drop($event, column)">
             <div class="example-box" *ngFor="let item of allTasks[column]" cdkDrag>
+              <div
+                *ngIf="item.id !== editedItem"
+                [contentEditable]="item.id === editedItem"
+              >
+                <i
+                  class="plus bi bi-plus"
+                  (click)="openLabelInput(item.id)"
+                ></i>
+              </div>
+              <div
+                *ngIf="item.id === editedItem"
+              >
+                <input
+                  name="Label"
+                  [(ngModel)]="newLabel"
+                  class="input-label"
+                  (blur)="updateTask(item.id, item)"
+                  required>
+              </div>
 
               <div
                 *ngIf="item.id !== editedItemId"
@@ -47,6 +66,10 @@
               >
                 <div class="header-data mt-3">{{item.header}}</div>
                 <div class="content-data">{{item.content}}</div>
+                <div *ngFor="let label of parts">
+                <div class="label-data">{{label}}</div>
+                </div>
+
               </div>
               <div class="box col-2 mt-3">
                 <i
@@ -58,6 +81,7 @@
                   (click)="deleteTask(item.id)"
                 ></i>
               </div>
+
               <div
                 *ngIf="item.id === editedItemId"
               >
