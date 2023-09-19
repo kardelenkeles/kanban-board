@@ -38,18 +38,25 @@
         [cdkDropListData]="allTasks[column]"
         (cdkDropListDropped)="drop($event, column)">
         <div class="example-box" *ngFor="let item of allTasks[column]" cdkDrag>
+          <i
+            class="bi bi-pen"
+            (click)="startEditing(item.id)"
+          ></i>
           <button class="delete-button" (click)="deleteTask(item.id)">x</button>
-          <i></i>
           <div
-            *ngIf="!isEdited"
+              *ngIf="item.id === editedItemId"
+              [contentEditable]="item.id === editedItemId"
           >
             {{item.header}}
-          </div>
-          <input
-            *ngIf="isEdited"
-          />
-          <div class="editable-content">
             {{item.content}}
+          </div>
+          <div *ngIf="item.id !== editedItemId">
+            <form (submit)="updateTask(item.id, item)">
+              <input [(ngModel)]="item.header" name="header" required>
+              <input [(ngModel)]="item.content" name="content" required>
+              <button type="submit">Save</button>
+              <button type="button" (click)="cancelEdit()">Cancel</button>
+            </form>
           </div>
         </div>
       </div>

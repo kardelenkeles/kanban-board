@@ -16,7 +16,8 @@ import {TaskState} from "../state/state/task.state";
 export class KanbanComponent implements OnInit {
   @Select(TaskSelector.items)
   allTasks$: Observable<Task[]>;
-  isEdited: boolean = false;
+  editedItemId: number | null = null;
+  showForm = false;
 
   allTasks: any = {
     backlog: [],
@@ -79,6 +80,15 @@ export class KanbanComponent implements OnInit {
     this.store.dispatch(new UpdateTask(id, item));
   }
 
+  startEditing(id: number) {
+    this.editedItemId = id;
+  }
+
+  cancelEdit() {
+    this.editedItemId = null;
+    this.showForm = false;
+  }
+
   deleteTask(id: number) {
     if (confirm('Do you want to delete this task?')) {
       this.store.dispatch(new DeleteTask(id));
@@ -101,4 +111,6 @@ export class KanbanComponent implements OnInit {
       })
     }
   }
+
+
 }
