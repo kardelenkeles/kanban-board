@@ -81,12 +81,15 @@ export class KanbanComponent implements OnInit {
   }
 
   startEditing(id: number) {
-    this.editedItemId = id;
+    if (this.editedItemId === id) {
+      this.cancelEdit();
+    } else {
+      this.editedItemId = id;
+    }
   }
 
   cancelEdit() {
     this.editedItemId = null;
-    this.showForm = false;
   }
 
   deleteTask(id: number) {
