@@ -29,49 +29,55 @@
 
 <div class="flex-container">
   <div cdkDropListGroup>
-    <div *ngFor="let column of columns" class="card">
-      <h2>{{column}}</h2>
+    <div class="row">
+      <div class="col-12">
+        <div *ngFor="let column of columns" class="card">
+          <h2>{{column}}</h2>
+          <div
+            class="card-body"
+            cdkDropList
+            [cdkDropListData]="allTasks[column]"
+            (cdkDropListDropped)="drop($event, column)">
+            <div class="example-box" *ngFor="let item of allTasks[column]" cdkDrag>
 
-      <div
-        class="card-body"
-        cdkDropList
-        [cdkDropListData]="allTasks[column]"
-        (cdkDropListDropped)="drop($event, column)">
-        <div class="example-box" *ngFor="let item of allTasks[column]" cdkDrag>
-          <i
-            class="pen bi bi-pen"
-            (click)="startEditing(item.id)"
-          ></i>
-          <i
-            class="trash bi bi-trash"
-            (click)="deleteTask(item.id)"
-          ></i>
-          <div
-              *ngIf="item.id !== editedItemId"
-              [contentEditable]="item.id === editedItemId"
-              class="text-body"
-          >
-            <div class="header-data">{{item.header}}</div>
-            <div class="content-data">{{item.content}}</div>
-          </div>
-          <div
-            *ngIf="item.id === editedItemId"
-          >
-            <form (submit)="updateTask(item.id, item)"
-                  class="input-body">
-              <input
-                class="input-header"
-                [(ngModel)]="item.header"
-                name="header"
-                required>
-              <input
-                class="input-content"
-                [(ngModel)]="item.content"
-                name="content"
-                required>
-              <button class="save" type="submit">Save</button>
-              <button class="cancel" type="button" (click)="cancelEdit()">Cancel</button>
-            </form>
+              <div
+                *ngIf="item.id !== editedItemId"
+                [contentEditable]="item.id === editedItemId"
+                class="text-body col-10"
+              >
+                <div class="header-data mt-3">{{item.header}}</div>
+                <div class="content-data">{{item.content}}</div>
+              </div>
+              <div class="box col-2 mt-3">
+                <i
+                  class="pen bi bi-pen"
+                  (click)="startEditing(item.id)"
+                ></i>
+                <i
+                  class="trash bi bi-trash"
+                  (click)="deleteTask(item.id)"
+                ></i>
+              </div>
+              <div
+                *ngIf="item.id === editedItemId"
+              >
+                <form (submit)="updateTask(item.id, item)"
+                      class="input-body">
+                  <input
+                    class="input-header"
+                    [(ngModel)]="item.header"
+                    name="header"
+                    required>
+                  <input
+                    class="input-content"
+                    [(ngModel)]="item.content"
+                    name="content"
+                    required>
+                  <button class="save" type="submit">Save</button>
+                  <button class="cancel" type="button" (click)="cancelEdit()">Cancel</button>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
       </div>

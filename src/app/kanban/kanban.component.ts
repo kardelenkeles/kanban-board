@@ -17,7 +17,6 @@ export class KanbanComponent implements OnInit {
   @Select(TaskSelector.items)
   allTasks$: Observable<Task[]>;
   editedItemId: number | null = null;
-  showForm = false;
 
   allTasks: any = {
     backlog: [],
