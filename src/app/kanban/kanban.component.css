@@ -1,6 +1,6 @@
 .flex-container {
   display: flex;
-  justify-content: space-evenly;
+  justify-items: center;
 }
 
 h2 {
@@ -10,11 +10,12 @@ h2 {
 .card {
   display: flex;
   float: left;
-  width: 400px;
-  height: 600px;
+  width: 450px;
+  height: 900px;
   overflow: auto;
   margin: 25px;
   border-radius: 30px;
+  background: rgba(183,189,151,0.6);
 }
 
 
@@ -23,60 +24,107 @@ h2 {
   border-radius: 30px;
   padding: 20px;
   margin: 80px;
+  background: #bbcfff;
 }
 
 
 .example-box {
   display: flex;
-  background: #a3b5ff;
+  background: rgba(58,85,189,0.6);
   width: 380px;
-  height: 200px;
+  min-height: 300px;
   border-radius: 30px;
   font-size: 20px;
   align-items: center;
   margin: 10px;
 }
 
-.form-select {
-  width: 190px;
+.cancel{
+  width: 80px;
+  height: 30px;
+  border-radius: 20px;
+  background: lightcoral;
 }
 
-i{
+.save{
+  width: 60px;
+  height: 30px;
+  border-radius: 20px;
+  background: lightcoral;
+}
+
+.input-header{
+  width: 200px;
+  height: 45px;
+  border-radius: 15px;
+  margin: 10px;
+}
+
+.input-content{
+  width: 250px;
+  height: 45px;
+  border-radius: 15px;
+  margin: 10px;
+}
+
+.input-body{
+  display: grid;
+  margin: 20px;
+}
+
+.text-body{
+  display: grid;
+}
+
+.header-data{
+  font-size: 25px;
+  font-family: "Andale Mono";
+  margin-left: 35px;
+  margin-bottom: 25px;
+  height: 50px;
+  width: auto;
+  color: darkred;
+}
+
+.content-data{
+  font-size: 20px;
+  font-family: "Times New Roman";
+  margin-left: 25px;
+  height: 50px;
+  width: auto;
+}
+
+.pen{
   position: absolute;
-  margin-right: 10px;
+  width: 30px;
+  height: 25px;
+  right: 55px;
   top: 100px;
-  right: 5px;
   text-align: center;
-  font-size: 16px;
-  color: #007bff;
+  font-size: 20px;
+  color: white;
+  background-color: green;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 button {
   margin: 10px;
 }
 
-.delete-button:hover{
-  background-color: #d32f2f;
-}
-
-.delete-button {
+.trash {
   position: absolute;
-
-  right: 5px;
-  width: 20px;
-  height: 20px;
+  top: 100px;
+  right: 95px;
+  width: 28px;
+  height: 25px;
   background-color: #f44336;
   color: white;
   text-align: center;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 20px;
   border-radius: 50%;
   cursor: pointer;
-}
-
-
-.card-body {
-
 }
 
 .editable-content {
