@@ -96,6 +96,15 @@ export class KanbanComponent implements OnInit {
         }))
     }
 
+    deleteLabel(item:any, labelToDelete:string) {
+
+        const updatedLabels = item.label.split(',').map((label: string) => label.trim()).filter((label: string) => label !== labelToDelete);
+
+        const updatedLabel = updatedLabels.join(', ');
+        this.store.dispatch(new UpdateTask(item.id, {
+            label: updatedLabel
+        }))
+    }
     parseLabels(value: string) {
         return value?.split(',').map((part) => part.trim());
     }
@@ -126,6 +135,8 @@ export class KanbanComponent implements OnInit {
         }
     }
 
+
+
     drop(event: CdkDragDrop<Task[]>, taskStatus: string) {
         const item = event.previousContainer.data[event.previousIndex];
         if (event.previousContainer === event.container) {
@@ -146,4 +157,6 @@ export class KanbanComponent implements OnInit {
             });
         }
     }
+
+
 }

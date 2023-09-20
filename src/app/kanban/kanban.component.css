@@ -1,147 +1,172 @@
 .flex-container {
-  display: flex;
-  justify-items: center;
+    display: flex;
+    justify-items: center;
 }
 
 h2 {
-  text-align: center;
+    text-align: center;
 }
 
 .card {
-  display: flex;
-  float: left;
-  width: 450px;
-  height: 900px;
-  overflow: auto;
-  margin: 25px;
-  background: #5ab3d1;
+    display: flex;
+    float: left;
+    width: 450px;
+    height: 900px;
+    overflow: auto;
+    margin: 25px;
+    background: #5ab3d1;
 }
 
 .addTask {
-  width: 450px;
-  padding: 20px;
-  margin: 80px;
-  background: #5ab3d1;
+    width: 450px;
+    padding: 20px;
+    margin: 80px;
+    background: #5ab3d1;
 }
 
 .example-box {
-  display: flex;
-  background: white;
-  justify-content: center;
-  flex-wrap: wrap;
-  font-size: 20px;
-  margin: 10px;
+    background: white;
+    font-size: 20px;
+    margin: 10px;
+    overflow: auto;
 }
 
-.box {
-  display: flex;
-  flex-direction: column;
-}
 
 .cancel {
-  width: 80px;
-  height: 30px;
-  border-radius: 20px;
-  background: #007bff;
+    width: 80px;
+    height: 30px;
+    border-radius: 20px;
+    background: #007bff;
 }
 
 .save {
-  width: 60px;
-  height: 30px;
-  border-radius: 20px;
-  background: #0056b3;
+    width: 60px;
+    height: 30px;
+    border-radius: 20px;
+    background: #0056b3;
 }
 
 .input-header {
-  width: 200px;
-  height: 45px;
-  border-radius: 15px;
-  margin: 10px;
-  padding: 16px;
+    width: 200px;
+    height: 45px;
+    border-radius: 15px;
+    margin: 10px;
+    padding: 16px;
 }
 
 .input-content {
-  width: 250px;
-  height: 45px;
-  border-radius: 15px;
-  margin: 10px;
+    width: 250px;
+    height: 45px;
+    border-radius: 15px;
+    margin: 10px;
 }
 
 .input-body {
-  display: grid;
-  margin: 20px;
+    display: grid;
+    margin: 20px;
 }
 
 .text-body {
-  display: grid;
+
+    gap: 5px;
+    height: auto;
+    margin: 10px;
 }
 
+
 .header-data {
-  font-size: 25px;
-  font-family: "Andale Mono";
-  margin-left: 35px;
-  margin-bottom: 25px;
-  height: 50px;
-  width: auto;
-  color: darkred;
+    font-size: 25px;
+    font-family: "Andale Mono";
+    display: grid;
+    gap: 5px; /* Sütunlar arasında boşluk bırakmak isterseniz */
+    background-color: lightblue;
+    padding: 5px;
+    color: darkred;
 }
 
 .content-data {
-  font-size: 20px;
-  font-family: "Times New Roman";
-  margin-left: 25px;
-  height: 50px;
-  width: auto;
+    font-size: 20px;
+    background-color: lightcoral;
+    padding: 20px;
+    text-align: center;
+    width: auto;
+}
+
+.innerDiv {
+    display: grid;
+    grid-template-rows: 30px 1fr auto;
+    grid-template-columns: auto auto auto auto;
+    gap: 10px;
+
+}
+
+.label-data {
+    background-color: #f4f4f4;
+    padding: 5px;
+
+}
+
+.x {
+    cursor: pointer;
 }
 
 button {
-  margin: 10px;
+    margin: 10px;
+}
+
+
+.box {
+    display: flex;
+
 }
 
 .pen {
-  font-size: 20px;
-  cursor: pointer;
-  margin: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    margin: 15px;
+    width: 30px;
+    height: 30px;
 }
 
 .trash {
-  font-size: 20px;
-  cursor: pointer;
-  margin: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    margin: 15px;
+    width: 30px;
+    height: 30px;
 }
 
 .plus {
-  font-size: 25px;
-  cursor: pointer;
-  margin: 15px;
+    font-size: 25px;
+    cursor: pointer;
+    margin: 15px;
 }
 
 .editable-content {
-  display: flex;
-  float: left;
+    display: flex;
+    float: left;
 }
 
 .cdk-drag-preview {
-  box-sizing: border-box;
-  border-radius: 4px;
-  box-shadow:
-    0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
     0 8px 10px 1px rgba(0, 0, 0, 0.14),
     0 3px 14px 2px rgba(0, 0, 0, 0.12);
 }
 
 .cdk-drag-placeholder {
-  opacity: 0;
+    opacity: 0;
 }
 
 .cdk-drag-animating {
-  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
 .example-box:last-child {
-  border: none;
+    border: none;
 }
 
 .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
-  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
