@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, NgZone, OnDestroy, OnInit} from '@angular/core';
 import {Task} from '../model/task';
 import {
     CdkDragDrop,
@@ -23,6 +23,7 @@ import {Observable} from 'rxjs';
 export class KanbanComponent implements OnInit {
     @Select(TaskSelector.items)
     allTasks$: Observable<Task[]>;
+
     editedItemId: number | null = null;
     editedItem: number | null = null;
 
@@ -40,8 +41,12 @@ export class KanbanComponent implements OnInit {
 
     columns = ['backlog', 'todo', 'inProgress', 'done'];
 
-    constructor(private store: Store) {
+    constructor(private store: Store,
+    ) {
+
     }
+
+
 
     ngOnInit(): void {
         this.store.dispatch(GetAllTasks);
@@ -64,6 +69,7 @@ export class KanbanComponent implements OnInit {
 
     }
 
+
     addTask() {
         this.store.dispatch(
             new AddTask({
@@ -84,27 +90,35 @@ export class KanbanComponent implements OnInit {
             header: this.newHeader,
             content: this.newContent
         }));
-        this.newLabel = '';
+        this.newHeader = '';
+        this.newContent = '';
+        this.store.dispatch(GetAllTasks);
     }
 
     updateLabel(id: number, item: any) {
-        console.log(item)
         const updatedLabel = `${item.label}, ${this.newLabel}`.trim();
 
         this.store.dispatch(new UpdateTask(id, {
             label: updatedLabel
         }))
+        this.newLabel = '';
+        this.store.dispatch(GetAllTasks);
     }
 
-    deleteLabel(item:any, labelToDelete:string) {
+
+    deleteLabel(item: any, labelToDelete: string) {
 
         const updatedLabels = item.label.split(',').map((label: string) => label.trim()).filter((label: string) => label !== labelToDelete);
 
         const updatedLabel = updatedLabels.join(', ');
+
         this.store.dispatch(new UpdateTask(item.id, {
             label: updatedLabel
         }))
+        this.store.dispatch(GetAllTasks);
+
     }
+
     parseLabels(value: string) {
         return value?.split(',').map((part) => part.trim());
     }
@@ -127,6 +141,7 @@ export class KanbanComponent implements OnInit {
 
     cancelEdit() {
         this.editedItemId = null;
+        this.store.dispatch(GetAllTasks);
     }
 
     deleteTask(id: number) {
@@ -134,7 +149,6 @@ export class KanbanComponent implements OnInit {
             this.store.dispatch(new DeleteTask(id));
         }
     }
-
 
 
     drop(event: CdkDragDrop<Task[]>, taskStatus: string) {

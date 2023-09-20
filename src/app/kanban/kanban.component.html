@@ -56,7 +56,8 @@
                 <div class="header-data mt-3">{{ item.header }}</div>
                 <div class="content-data">{{ item.content }}</div>
 
-               <div class="d-flex flex-wrap">
+               <div
+                       class="d-flex flex-wrap">
                  <div
                          *ngFor="let label of parseLabels(item.label)"
 
@@ -75,6 +76,7 @@
                           [(ngModel)]="newLabel"
                           class="input-label"
                           (blur)="updateLabel(item.id, item)"
+                          (keyup.enter)="updateLabel(item.id, item)"
                           required
                   />
                 </div>
