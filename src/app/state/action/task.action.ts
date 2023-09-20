@@ -22,9 +22,9 @@ export class UpdateTask {
   constructor(
     public id: number,
     public payload: {
-      header: string;
-      content: string;
-      label: string;
+      header?: string;
+      content?: string;
+      label?: string;
       status?: string;
     },
   ) {}

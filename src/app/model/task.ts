@@ -7,9 +7,9 @@ export interface Task {
 }
 
 export interface UpdateTask {
-  header: string;
-  content: string;
-  label: string;
+  header?: string;
+  content?: string;
+  label?: string;
   status?: string;
 }
 

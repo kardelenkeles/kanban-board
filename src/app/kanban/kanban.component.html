@@ -55,7 +55,7 @@
                   name="Label"
                   [(ngModel)]="newLabel"
                   class="input-label"
-                  (blur)="updateTask(item.id, item)"
+                  (blur)="updateLabel(item.id, item)"
                   required
                 />
               </div>
@@ -78,16 +78,16 @@
               </div>
 
               <div *ngIf="item.id === editedItemId">
-                <form (submit)="updateTask(item.id, item)" class="input-body">
+                <form (submit)="updateTask(item.id,item)" class="input-body">
                   <input
                     class="input-header"
-                    [(ngModel)]="item.header"
+                    [(ngModel)]="newHeader"
                     name="header"
                     required
                   />
                   <input
                     class="input-content"
-                    [(ngModel)]="item.content"
+                    [(ngModel)]="newContent"
                     name="content"
                     required
                   />
