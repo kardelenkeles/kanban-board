@@ -60,8 +60,6 @@ export class KanbanComponent implements OnInit {
         return this.allTasks[item.status].push(item);
       });
       this.columns = Object.keys(this.allTasks);
-
-
     });
 
 
@@ -83,15 +81,22 @@ export class KanbanComponent implements OnInit {
   }
 
   updateTask(id: number, item: any) {
-    const myLabels = this.parseLabels(this.newLabel);
-    item.label = myLabels;
     console.log(item.label)
-    this.store.dispatch(new UpdateTask(id, item));
+    // const myLabels = this.parseLabels();
+    // item.label = myLabels;
+
+    this.store.dispatch(new UpdateTask(id, {
+      label: this.newLabel,
+      header: this.newHeader,
+      content: this.newContent
+    }));
     this.newLabel = '';
   }
 
-  parseLabels(newLabel: string) {
-    return this.newLabel.split(',').map((part) => part.trim());
+  parseLabels(value: string) {
+    // const a = 'a,b,c,d';
+    // console.log(a.split(',').map((part) => part.trim()))
+    return value.split(',').map((part) => part.trim());
   }
 
   startEditing(id: number) {

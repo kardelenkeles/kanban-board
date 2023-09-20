@@ -25,7 +25,7 @@ export class UpdateTask {
       header: string;
       content: string;
       label: string;
-      status: string;
+      status?: string;
     },
   ) {}
 }

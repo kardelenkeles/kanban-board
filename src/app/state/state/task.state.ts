@@ -66,7 +66,6 @@ export class TaskState {
 
   @Action(UpdateTask)
   updateTask({}: StateContext<TaskStateModel>, action: UpdateTask) {
-    console.log(action);
     return this.taskService.updateTask(action.id, action.payload);
   }
 }

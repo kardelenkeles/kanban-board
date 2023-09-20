@@ -10,7 +10,7 @@ export interface UpdateTask {
   header: string;
   content: string;
   label: string;
-  status: string;
+  status?: string;
 }
 
 export enum TaskStatus {

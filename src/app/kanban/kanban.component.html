@@ -68,10 +68,9 @@
                 <div class="header-data mt-3">{{ item.header }}</div>
                 <div class="content-data">{{ item.content }}</div>
 
-                <div *ngFor="let items of item.label">
-                  <div class="label-data">{{ items }}</div>
+                <div *ngFor="let a of parseLabels(item.label)">
+                  <div class="label-data">{{a}}</div>
                 </div>
-
               </div>
               <div class="box col-2 mt-3">
                 <i class="pen bi bi-pen" (click)="startEditing(item.id)"></i>
