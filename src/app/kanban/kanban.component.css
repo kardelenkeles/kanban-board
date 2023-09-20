@@ -77,33 +77,26 @@ h2 {
 .header-data {
     font-size: 25px;
     font-family: "Andale Mono";
-    display: grid;
-    gap: 5px; /* Sütunlar arasında boşluk bırakmak isterseniz */
-    background-color: lightblue;
-    padding: 5px;
-    color: darkred;
+    background-color: papayawhip;
+    padding: 10px;
+    margin: 10px;
+    color: black;
 }
 
 .content-data {
     font-size: 20px;
-    background-color: lightcoral;
+    background-color: #bbcfff;
     padding: 20px;
     text-align: center;
-    width: auto;
-}
-
-.innerDiv {
-    display: grid;
-    grid-template-rows: 30px 1fr auto;
-    grid-template-columns: auto auto auto auto;
-    gap: 10px;
 
 }
 
 .label-data {
     background-color: #f4f4f4;
     padding: 5px;
-
+    margin: 10px;
+    border-radius: 15px;
+    padding: 10px;
 }
 
 .x {
@@ -139,7 +132,9 @@ button {
 .plus {
     font-size: 25px;
     cursor: pointer;
-    margin: 15px;
+    margin: 20px;
+    border-radius: 12px;
+    background: #d0935a;
 }
 
 .editable-content {
