@@ -1,44 +1,40 @@
-import {Task} from "../../model/task";
-
+import { Task } from '../../model/task';
 
 export class AddTask {
-  static readonly type = "[Task] Add task";
+  static readonly type = '[Task] Add task';
 
-  constructor(
-    public payload: Task
-  ) {
-  }
+  constructor(public payload: Task) {}
 }
 
 export class GetAllTasks {
-  static readonly type = "[Task] Get All Tasks";
+  static readonly type = '[Task] Get All Tasks';
 }
 
 export class DeleteTask {
-  static readonly type = "[Task] Delete Task";
+  static readonly type = '[Task] Delete Task';
 
-  constructor(public id: number) {
-  }
+  constructor(public id: number) {}
 }
 
 export class UpdateTask {
-  static readonly type = "[Task] Update Task";
+  static readonly type = '[Task] Update Task';
 
-  constructor(public id: number,
-              public payload: {
-                header: string,
-                content: string,
-                label: string,
-                status: string
-              }) {
-  }
+  constructor(
+    public id: number,
+    public payload: {
+      header: string;
+      content: string;
+      label: string;
+      status: string;
+    },
+  ) {}
 }
 
-
 export class ChangeStatus {
-  static readonly type = "[Task] Change status";
+  static readonly type = '[Task] Change status';
 
-  constructor(public readonly taskItem: Task,
-              public readonly status: boolean) {
-  }
+  constructor(
+    public readonly taskItem: Task,
+    public readonly status: boolean,
+  ) {}
 }

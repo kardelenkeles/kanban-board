@@ -1,6 +1,4 @@
-<form
-  class="addTask"
-  (ngSubmit)="addTask()">
+<form class="addTask" (ngSubmit)="addTask()">
   <div class="form">
     <label class="form-label">
       Task Header:
@@ -9,7 +7,7 @@
         name="Header"
         class="form-control"
         [(ngModel)]="newHeader"
-      >
+      />
     </label>
   </div>
   <div class="form">
@@ -20,25 +18,29 @@
         name="Content"
         class="form-control"
         [(ngModel)]="newContent"
-      >
+      />
     </label>
   </div>
   <button type="submit" class="btn btn-dark">Add</button>
 </form>
-
 
 <div class="flex-container">
   <div cdkDropListGroup>
     <div class="row">
       <div class="col-12">
         <div *ngFor="let column of columns" class="card">
-          <h2>{{column}}</h2>
+          <h2>{{ column }}</h2>
           <div
             class="card-body"
             cdkDropList
             [cdkDropListData]="allTasks[column]"
-            (cdkDropListDropped)="drop($event, column)">
-            <div class="example-box" *ngFor="let item of allTasks[column]" cdkDrag>
+            (cdkDropListDropped)="drop($event, column)"
+          >
+            <div
+              class="example-box"
+              *ngFor="let item of allTasks[column]"
+              cdkDrag
+            >
               <div
                 *ngIf="item.id !== editedItem"
                 [contentEditable]="item.id === editedItem"
@@ -48,15 +50,14 @@
                   (click)="openLabelInput(item.id)"
                 ></i>
               </div>
-              <div
-                *ngIf="item.id === editedItem"
-              >
+              <div *ngIf="item.id === editedItem">
                 <input
                   name="Label"
                   [(ngModel)]="newLabel"
                   class="input-label"
                   (blur)="updateTask(item.id, item)"
-                  required>
+                  required
+                />
               </div>
 
               <div
@@ -64,41 +65,37 @@
                 [contentEditable]="item.id === editedItemId"
                 class="text-body col-10"
               >
-                <div class="header-data mt-3">{{item.header}}</div>
-                <div class="content-data">{{item.content}}</div>
-                <div *ngFor="let label of parts">
-                <div class="label-data">{{label}}</div>
+                <div class="header-data mt-3">{{ item.header }}</div>
+                <div class="content-data">{{ item.content }}</div>
+
+                <div *ngFor="let items of item.label">
+                  <div class="label-data">{{ items }}</div>
                 </div>
 
               </div>
               <div class="box col-2 mt-3">
-                <i
-                  class="pen bi bi-pen"
-                  (click)="startEditing(item.id)"
-                ></i>
-                <i
-                  class="trash bi bi-trash"
-                  (click)="deleteTask(item.id)"
-                ></i>
+                <i class="pen bi bi-pen" (click)="startEditing(item.id)"></i>
+                <i class="trash bi bi-trash" (click)="deleteTask(item.id)"></i>
               </div>
 
-              <div
-                *ngIf="item.id === editedItemId"
-              >
-                <form (submit)="updateTask(item.id, item)"
-                      class="input-body">
+              <div *ngIf="item.id === editedItemId">
+                <form (submit)="updateTask(item.id, item)" class="input-body">
                   <input
                     class="input-header"
                     [(ngModel)]="item.header"
                     name="header"
-                    required>
+                    required
+                  />
                   <input
                     class="input-content"
                     [(ngModel)]="item.content"
                     name="content"
-                    required>
+                    required
+                  />
                   <button class="save" type="submit">Save</button>
-                  <button class="cancel" type="button" (click)="cancelEdit()">Cancel</button>
+                  <button class="cancel" type="button" (click)="cancelEdit()">
+                    Cancel
+                  </button>
                 </form>
               </div>
             </div>

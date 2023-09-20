@@ -1,4 +1,4 @@
-import {Task} from "./task";
-export interface TaskStateModel{
+import { Task } from './task';
+export interface TaskStateModel {
   duties: Task[];
 }

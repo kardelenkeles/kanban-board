@@ -8,7 +8,7 @@ describe('KanbanComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [KanbanComponent]
+      declarations: [KanbanComponent],
     });
     fixture = TestBed.createComponent(KanbanComponent);
     component = fixture.componentInstance;

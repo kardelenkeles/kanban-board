@@ -1,5 +1,5 @@
 export interface Task {
-  id:number;
+  id: number;
   header: string;
   content: string;
   label: string;
@@ -13,9 +13,11 @@ export interface UpdateTask {
   status: string;
 }
 
-export enum TaskStatus{
+export enum TaskStatus {
   BACKLOG = 'backlog',
   TODO = 'todo',
   INPROGRESS = 'inProgress',
-  DONE = 'done'
+  DONE = 'done',
 }
+
+
