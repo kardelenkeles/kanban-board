@@ -62,7 +62,9 @@
                          *ngFor="let label of parseLabels(item.label)"
 
                  >
-                   <div class="label-data">{{label}}
+                   <div
+                           *ngIf="label"
+                           class="label-data">{{label}}
                      <i
                              class="x bi bi-x"
                               (click)="deleteLabel(item, label)"
@@ -76,7 +78,6 @@
                           [(ngModel)]="newLabel"
                           class="input-label"
                           (blur)="updateLabel(item.id, item)"
-                          (keyup.enter)="updateLabel(item.id, item)"
                           required
                   />
                 </div>

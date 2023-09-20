@@ -92,7 +92,7 @@ export class KanbanComponent implements OnInit {
         }));
         this.newHeader = '';
         this.newContent = '';
-        this.store.dispatch(GetAllTasks);
+
     }
 
     updateLabel(id: number, item: any) {
@@ -103,6 +103,7 @@ export class KanbanComponent implements OnInit {
         }))
         this.newLabel = '';
         this.store.dispatch(GetAllTasks);
+
     }
 
 
