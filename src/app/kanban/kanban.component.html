@@ -47,7 +47,6 @@
               </div>
 
 
-
               <div
                 *ngIf="item.id !== editedItemId"
                 [contentEditable]="item.id === editedItemId"
@@ -56,62 +55,63 @@
                 <div class="header-data mt-3">{{ item.header }}</div>
                 <div class="content-data">{{ item.content }}</div>
 
-               <div
-                       class="d-flex flex-wrap">
-                 <div
-                         *ngFor="let label of parseLabels(item.label)"
+                <div
+                  class="d-flex flex-wrap">
+                  <div
+                    *ngFor="let label of parseLabels(item.label)"
 
-                 >
-                   <div
-                           *ngIf="label"
-                           class="label-data">{{label}}
-                     <i
-                             class="x bi bi-x"
-                              (click)="deleteLabel(item, label)"
-                     ></i>
-                   </div>
-                 </div>
-               </div>
+                  >
+                    <div
+                      *ngIf="label"
+                      class="label-data">{{label}}
+                      <i
+                        class="x bi bi-x"
+                        (click)="deleteLabel(item, label)"
+                      ></i>
+                    </div>
+                  </div>
+                </div>
                 <div *ngIf="item.id === editedItem">
                   <input
-                          name="Label"
-                          [(ngModel)]="newLabel"
-                          class="input-label"
-                          (blur)="updateLabel(item.id, item)"
-                          required
+                    name="Label"
+                    [(ngModel)]="newLabel"
+                    class="input-label"
+                    (blur)="updateLabel(item.id, item)"
+                    (keyup.enter)="updateLabel(item.id, item)"
+                    required
                   />
                 </div>
-              </div>
-              <div
-                      *ngIf="item.id !== editedItem"
-                      [contentEditable]="item.id === editedItem"
-              >
+                <div
+                  *ngIf="item.id !== editedItem"
+                  [contentEditable]="item.id === editedItem"
+                >
 
-                <i
-                        class="plus bi bi-plus"
-                        (click)="openLabelInput(item.id)"
-                ></i>
-              </div>
+                  <i
+                    class="plus bi bi-plus"
+                    (click)="openLabelInput(item.id)"
+                  ></i>
+                </div>
 
-              <div *ngIf="item.id === editedItemId">
-                <form (submit)="updateTask(item.id,item)" class="input-body">
-                  <input
-                    class="input-header"
-                    [(ngModel)]="newHeader"
-                    name="header"
-                    required
-                  />
-                  <input
-                    class="input-content"
-                    [(ngModel)]="newContent"
-                    name="content"
-                    required
-                  />
-                  <button class="save" type="submit">Save</button>
-                  <button class="cancel" type="button" (click)="cancelEdit()">
-                    Cancel
-                  </button>
-                </form>
+                <div *ngIf="item.id === editedItemId">
+                  <form (submit)="updateTask(item.id,item)" class="input-body">
+                    <input
+                      class="input-header"
+                      [(ngModel)]="newHeader"
+                      name="header"
+                      required
+                    />
+                    <input
+                      class="input-content"
+                      [(ngModel)]="newContent"
+                      name="content"
+                      required
+                    />
+                    <button class="save" type="submit">Save</button>
+                    <button class="cancel" type="button" (click)="cancelEdit()">
+                      Cancel
+                    </button>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
@@ -119,4 +119,3 @@
       </div>
     </div>
   </div>
-</div>

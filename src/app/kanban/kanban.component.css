@@ -31,6 +31,10 @@ h2 {
     overflow: auto;
 }
 
+.input-label{
+    border-radius: 15px;
+}
+
 
 .cancel {
     width: 80px;
